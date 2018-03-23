@@ -39,23 +39,19 @@ vetor = []
 
 # Busca binária simples 
 def BuscaBinaria(vetor, ini, fim, elementoBuscado):
-    
-    if fim-ini == 0:
+
+    if ini==fim:
         return -1
-    
+
     i = int(((ini+fim)/2))
 
     if vetor[i] == elementoBuscado:
         return i
-
-    if ini == fim:
-        return -1
-
     else:
         if vetor[i]<elementoBuscado:
-            BuscaBinaria(vetor, i+1, fim, elementoBuscado)
+            BuscaBinaria(vetor, i, fim, elementoBuscado)
         else:
-            BuscaBinaria(vetor, ini, i-1, elementoBuscado)
+            BuscaBinaria(vetor, ini, i, elementoBuscado)
 
 # Busca indexada com separação em blocos de 100 do vetor, e dentro de cada bloco de 100 fazemos busca binária
 def BuscaIndexada(vetor, ini, fim, elementoBuscado):
@@ -91,6 +87,7 @@ def BuscaIndexada(vetor, ini, fim, elementoBuscado):
     #elif opcao == 2:
 
 import random
+print('Gerando vetor de números randômicos com 1000000 números')
 vetor = random.sample(range(1, 10000000), 1000000)
 entrada = int(input('Digite o elemento a procurar: '))
 quick = QuickSort()
@@ -110,7 +107,7 @@ fim = timeit.default_timer()
 print ('Tempo para a busca indexada + binária: %f segundos' % (fim - inicio))
 
 if resultado != -1:
-    print(resultado)
+    print('O elemento foi encontrado no vetor.')
 else:
     print('O elemento não foi encontrado no vetor.')
 pass
