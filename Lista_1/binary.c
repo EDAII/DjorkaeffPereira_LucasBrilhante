@@ -87,13 +87,13 @@ int main(){
     int i;
     
     for (i = 0; i < n; i++) {
-        my_array[i] = rand()%n;
+        my_array[i] = rand()%(n*10);
         //printf("%d ",my_array[i]);
     }
     clock_t t;
     t = clock();
     quickSort(my_array,0,n);
-    binary(rand()%n,my_array,n);
+    binary(99000,my_array,n);
     t = clock() - t;
     double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
     printf("It took %lf\n",time_taken);

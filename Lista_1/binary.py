@@ -72,42 +72,49 @@ def BuscaIndexada(vetor, ini, fim, elementoBuscado):
         x += 100 # pulamos para os próximos 100 números
        
 
-while opcao != 0:
-    print ('1 - Inserir novo número')
-    print ('2 - Buscar por número')
-    print ('0 - Sair')
-    opcao = int(input('Digite sua opção: '))
-    if opcao == 1:
-        entrada = int(input('Digite um número: '))
-        vetor.append(entrada)
-        quick = QuickSort()
-        quick.quickSort(vetor,0,len(vetor))
-        pass
-    elif opcao == 2:
-        entrada = int(input('Digite o elemento a procurar: '))
-        
-        inicio = timeit.default_timer()
-        resultado = BuscaBinaria(vetor, 0, len(vetor), entrada)
-        fim = timeit.default_timer()
-        print ('Tempo para a busca binária: %f segundos' % (fim - inicio))
-        
-        # Não tô salvando o valor retornado da busca indexada pois já estou pegando a posição em que o valor estiver pela busca binária
-        inicio = timeit.default_timer()
-        resultadoIndex = BuscaIndexada(vetor, 0, len(vetor), entrada)
-        fim = timeit.default_timer()
-        print ('Tempo para a busca indexada + binária: %f segundos' % (fim - inicio))
-        
-        if resultado != -1:
-            print('vetor [', resultado,'] = ', vetor[resultado])
-        else:
-            print('O elemento não foi encontrado no vetor.')
-        pass
+#while opcao != 0:
+ #   print ('1 - Inserir novo número')
+  #  print ('2 - Buscar por número')
+   # print ('0 - Sair')
+   # opcao = int(input('Digite sua opção: '))
+    #if opcao == 1:
+     #   entrada = int(input('Digite um número: '))
+      #  vetor.append(entrada)
+       # quick = QuickSort()
+        #quick.quickSort(vetor,0,len(vetor))
+       # pass
+    #elif opcao == 2:
 
-    elif opcao == 0:
-        print('Obrigado por utilizar o programa')
-        pass
-    else:
-        print('Opção não implementada')
-        pass
+import random
+vetor = random.sample(range(1, 10000000), 1000000)
+entrada = int(input('Digite o elemento a procurar: '))
+quick = QuickSort()
+
+inicio = timeit.default_timer()
+quick.quickSort(vetor,0,len(vetor))
+resultado = BuscaBinaria(vetor, 0, len(vetor), entrada)
+fim = timeit.default_timer()
+print ('Tempo para a busca binária: %f segundos' % (fim - inicio))
+
+# Não tô salvando o valor retornado da busca indexada pois já estou pegando a posição em que o valor estiver pela busca binária
+inicio = timeit.default_timer()
+quick = QuickSort()
+quick.quickSort(vetor,0,len(vetor))
+resultadoIndex = BuscaIndexada(vetor, 0, len(vetor), entrada)
+fim = timeit.default_timer()
+print ('Tempo para a busca indexada + binária: %f segundos' % (fim - inicio))
+
+if resultado != -1:
+    print(resultado)
+else:
+    print('O elemento não foi encontrado no vetor.')
+pass
+
+    #elif opcao == 0:
+     #   print('Obrigado por utilizar o programa')
+     #   pass
+    #else:
+    #    print('Opção não implementada')
+     #   pass
 
 
