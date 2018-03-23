@@ -39,13 +39,18 @@ vetor = []
 
 # Busca binária simples 
 def BuscaBinaria(vetor, ini, fim, elementoBuscado):
-    if ini-fim == 0:
+    
+    if fim-ini == 0:
         return -1
+    
     i = int(((ini+fim)/2))
+
     if vetor[i] == elementoBuscado:
         return i
+
     if ini == fim:
         return -1
+
     else:
         if vetor[i]<elementoBuscado:
             BuscaBinaria(vetor, i+1, fim, elementoBuscado)
@@ -70,7 +75,7 @@ def BuscaIndexada(vetor, ini, fim, elementoBuscado):
                     break
             break # paramos pois sabemos que ele está antes da posição atual
         x += 100 # pulamos para os próximos 100 números
-       
+
 
 #while opcao != 0:
  #   print ('1 - Inserir novo número')
