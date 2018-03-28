@@ -52,7 +52,7 @@ def main(typeSort):
     tempos = []
     vetor = []
     tamVetor = []
-    for i in range(0,30000,5000):
+    for i in range(0,30001,5000):
         tamVetor.append(i)
         timeToSort(i, tempos, vetor, typeSort)
         print('\n')
@@ -73,5 +73,8 @@ elif entrada==3:
     main(1)
     main(2)
 
+plt.xlabel('Tamanho vetor')
+plt.ylabel('Tempo (s)')
+plt.legend(['Comb-Sort', 'Bubble-Sort'])
 plt.grid(True)
 plt.show()
