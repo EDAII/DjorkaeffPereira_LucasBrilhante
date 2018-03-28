@@ -2,7 +2,7 @@
 #   Trabalho 2 - Estrutura de dados 2
 #   Algorítmo de ordenação (O(n^2)) - Comb_sort
 
-from matplotlib.pylab import plot, show, bar
+import matplotlib.pyplot as plt
 import random
 import time
 import timeit
@@ -21,34 +21,57 @@ def comb_sort(vetor):
             i=i+1
         gap = int(gap/1.3)
 
+def bubble_sort(vetor):
+    for count in range(len(vetor)-1,0,-1):
+        for i in range(count):
+            if vetor[i]>vetor[i+1]:
+                temp = vetor[i]
+                vetor[i] = vetor[i+1]
+                vetor[i+1] = temp
 
-def generateVector(total, vetor):
+def generateVector(total, vetor, typeSort):
     print('Gerando vetor de números randômicos com %d números...' % total)
     vetor = random.sample(range(1, 10000000), total)
     print('Ordenando o vetor...')
-    comb_sort(vetor)
+    if typeSort==1:
+        print('Comb-Sort')
+        comb_sort(vetor)
+    if typeSort==2:
+        print('Bubble-Sort')
+        bubble_sort(vetor)
     print('Vetor ordenado')
 
-def timeToSort(qtd, tempos, vetor):
+def timeToSort(qtd, tempos, vetor, typeSort):
     inicio = timeit.default_timer()
-    generateVector(qtd, vetor)
+    generateVector(qtd, vetor, typeSort)
     fim = timeit.default_timer()
     tempos.append(fim-inicio)
     print('Tempo para ordenação: ' + str(fim-inicio) + ' s')
 
-def main(tempos, vetor, tamVetor):
-    for i in range(0,100000,5000):
+def main(typeSort):
+    tempos = []
+    vetor = []
+    tamVetor = []
+    for i in range(0,30000,5000):
         tamVetor.append(i)
-        timeToSort(i, tempos, vetor)
+        timeToSort(i, tempos, vetor, typeSort)
         print('\n')
         print('Processo concluído..')
         print('\n\n\n')
+    # plot(tamVetor, tempos, 'bo')                     # draw the points
+    plt.plot(tamVetor, tempos)
 
-tempos = []
-vetor = []
-tamVetor = []
-main(tempos, vetor, tamVetor)
-plot(tamVetor, tempos, 'bo')                     # draw the points
-plot(tamVetor, tempos)                     # draw the graph
+print('1 - Ordenação com comb-sort')
+print('2 - Ordenação com bubble-sort')
+print('3 - Ordenação com bubble-sort e com comb-sort')
+entrada = int(input('Digite a opção escolhida: '))
+if entrada==1:
+    main(1)
+elif entrada==2:
+    main(2)
+elif entrada==3:
+    main(1)
+    main(2)
 
-show()                      # show it to me!
+plt.grid(True)
+plt.show()
